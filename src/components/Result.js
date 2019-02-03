@@ -41,6 +41,7 @@ class Result extends React.Component {
                 ? "disable"
                 : "";
 
+            let success = disable === "disable"; //DETERMINES IF THE PERSON FILLED OUT YESTERDAY'S INFO
             classes = `${classes} ${disable}`;
             return (
               <Note
@@ -50,6 +51,13 @@ class Result extends React.Component {
                 id={i}
               >
                 {i + 1}
+                {success ? (
+                  <img
+                    class="check"
+                    alt="checkmark"
+                    src={require("../assets/purplecheck.png")}
+                  />
+                ) : null}
               </Note>
             );
           })}

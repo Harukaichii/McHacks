@@ -1,13 +1,26 @@
 import React from "react";
-
+import Modal from "./Modal";
 class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       monthName: "",
-      year: this.props.year
+      year: this.props.year,
+      showModal: false
     };
   }
+
+  toggleShowModal = () => {
+    this.setState({ showModal: !this.state.showModal });
+  };
+
+  generateMsg = () => {
+    console.log(Math.floor(Math.random() * 2));
+    return [
+      "I met my online friend in real life today! -February 2nd 2019",
+      "I ate tasty potatoes today - Feburary 1st 2019"
+    ][Math.floor(Math.random() * 2)];
+  };
 
   //TODO: Add in the rest of the month
   static getDerivedStateFromProps({ month, year }) {
@@ -68,6 +81,15 @@ class Header extends React.Component {
         <button id="right" onClick={this.props.nextMonth}>
           {">"}
         </button>
+        <button id="surprise" onClick={this.toggleShowModal}>
+          Surprise Me!
+        </button>
+        {this.state.showModal ? (
+          <Modal>
+            <button onClick={this.toggleShowModal}>X</button>
+            {this.generateMsg()}
+          </Modal>
+        ) : null}
       </div>
     );
   }

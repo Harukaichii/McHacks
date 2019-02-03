@@ -22,7 +22,10 @@ class App extends Component {
   };
 
   toggleModal = e => {
-    if (parseInt(e.target.dataset.id) === parseInt(this.state.activeDay.day))
+    if (
+      parseInt(e.target.dataset.id) === parseInt(this.state.activeDay.day) &&
+      this.state.month === this.state.activeDay.month
+    )
       this.setState({ showModal: !this.state.showModal });
     else if (this.state.showModal)
       this.setState({ showModal: !this.state.showModal });
