@@ -57,12 +57,13 @@ class Result extends React.Component {
         <div>
           {this.state.showModal ? (
             <Modal>
-<<<<<<< HEAD
-              <button id="xbutton" onClick={this.props.toggleModal}>X</button>
-              <p>hi this is a whole lot of text because texts are cool and necessary to test and see if the Boxes are a sufficient size and i think writing stuff is really nice even though were about to pass out but thats ok because im just testing the box size lol see writing this is pretty easy!</p>
-=======
-              <button onClick={this.props.toggleModal}>X</button>
->>>>>>> 8795c3815401d9fe26b0d71f59845f2811ccf140
+              <button id="xbutton" onClick={this.props.toggleModal}>
+                X
+              </button>
+
+              <p>Tell me something positive today!</p>
+              <input type="text" />
+              <button onClick={this.props.toggleModal}>done</button>
             </Modal>
           ) : null}
         </div>
