@@ -21,8 +21,59 @@ class App extends Component {
   };
 
   toggleModal = () => {
-    console.log(this.state.showModal);
     this.setState({ showModal: !this.state.showModal });
+  };
+
+  prevMonth = () => {
+    let p_year,
+      p_month,
+      p_days,
+      p_daysArr = [];
+    if (this.state.month === "01") {
+      p_year = parseInt(this.state.year) - 1;
+      p_year = p_year + "";
+      p_month = "12";
+    } else {
+      p_year = this.state.year;
+      p_month = parseInt(this.state.month) - 1;
+      p_month = p_month + "";
+      if (p_month < 10) {
+        p_month = "0".concat(p_month);
+        console.log(p_month);
+      }
+    }
+    p_days = this.daysInMonth(p_month, p_year) - this.state.days.length;
+    for (let i = 0; i < p_days + this.state.days.length; i++) {
+      p_daysArr.push(i);
+    }
+
+    this.setState({ year: p_year, month: p_month, days: p_daysArr });
+  };
+
+  nextMonth = () => {
+    let p_year,
+      p_month,
+      p_days,
+      p_daysArr = [];
+    if (this.state.month === "12") {
+      p_year = parseInt(this.state.year) + 1;
+      p_year = p_year + "";
+      p_month = "01";
+    } else {
+      p_year = this.state.year;
+      p_month = parseInt(this.state.month) + 1;
+      p_month = p_month + "";
+      if (p_month < 10) {
+        p_month = "0".concat(p_month);
+        console.log(p_month);
+      }
+    }
+    p_days = this.daysInMonth(p_month, p_year) - this.state.days.length;
+    for (let i = 0; i < p_days + this.state.days.length; i++) {
+      p_daysArr.push(i);
+    }
+
+    this.setState({ year: p_year, month: p_month, days: p_daysArr });
   };
 
   //get number of days, write for loop to generate x
@@ -64,7 +115,12 @@ class App extends Component {
     return (
       <>
         <div className="container">
-          <Header month={this.state.month} year={this.state.year} />
+          <Header
+            month={this.state.month}
+            year={this.state.year}
+            prevMonth={this.prevMonth}
+            nextMonth={this.nextMonth}
+          />
           <Result
             year={this.state.year}
             month={this.state.month}
