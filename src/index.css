@@ -71,17 +71,7 @@ p {
   font-size: 50px;
   height: 60px;
   width: 60px;
-  /* margin-left: 0px;
-  margin-right: 20px; */
 }
-/* 
-.layer {
-  background: rgb(164, 189, 252, 0.3);
-  position: absolute;
-  top: 0;
-  height: 100vh;
-  width: 100vw;
-} */
 
 .note {
   background: rgba(179, 140, 266, 0.9);
@@ -143,6 +133,8 @@ p {
   font-size: 40px;
   border: 2px solid white;
   border-radius: 5px;
+  margin: 20px 0 20px 10px;
+  
 }
 
 @keyframes expand {

@@ -40,7 +40,6 @@ class App extends Component {
       p_month = p_month + "";
       if (p_month < 10) {
         p_month = "0".concat(p_month);
-        console.log(p_month);
       }
     }
     p_days = this.daysInMonth(p_month, p_year) - this.state.days.length;
