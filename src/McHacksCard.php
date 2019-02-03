@@ -147,6 +147,23 @@ class McHacksUser {
             echo $e -> getMessage();
         }
     }
+
+	function findCardForMonth($month, $year, $user){
+        try{
+            $sql = 'select card_date, colour, story, username, pattern from cards '
+            . 'where month(card_date) = ? and year(card_date) = ? and username = ?';
+        	$stmt = $this -> pdo -> prepare($sql);
+        	$stmt -> bindValue(1, $month);
+			$stmt -> bindValue(2, $year);
+			$stmt -> bindValue(3, $user);
+        	$stmt -> execute();
+			return $stmt -> fetch();
+        }
+        catch(PDOException $e) {
+            echo $e -> getMessage();
+        }
+    
+    }
        
     /**
      * Unsets PDO object value to get it garbage collected.
@@ -155,20 +172,5 @@ class McHacksUser {
         unset($this -> pdo);
     }
 
-    function findCardForMonth($month, $year, $user){
-        try{
-                $sql = 'select colour, story, username, pattern'
-                . 'where month(date) = ? and year(date) = ? and user = ' ;
-            	$stmt = $this -> pdo -> prepare($sql);
-            	$stmt -> bindValue(1, $colour);
-				$stmt -> bindValue(2, $story);
-				$stmt -> bindValue(3, $username);
-				$stmt -> bindValue(4, $pattern);
-            	$stmt -> execute();
-            }
-        catch(PDOException $e) {
-            echo $e -> getMessage();
-        }
     
-    }
 }
