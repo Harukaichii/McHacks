@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Header from "./Header";
 import Result from "./Result";
+import $ from "jquery";
 
 class App extends Component {
   constructor(props) {
@@ -26,6 +27,15 @@ class App extends Component {
 
   //get number of days, write for loop to generate x
   componentDidMount() {
+    $.ajax({
+      url: "ajax.php",
+      data: "",
+      type: "GET",
+      dataType: "json",
+      success: function(json) {
+        console.log(json);
+      }
+    });
     let date = new Date();
     let numDays,
       daysArr = [];
