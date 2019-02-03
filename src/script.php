@@ -6,8 +6,7 @@ init();
 /**
  * Creates cards and users tables. 
  */
-function init() {
-    $cities = fillCitiesArray();     
+function init() {  
     try {
         $mchacksCard = new McHacksCard();
         $mchacksUser = new McHacksUser();
