@@ -58,7 +58,7 @@ class McHacksUser {
             $stmt -> bindValue(1, "Went to the mall with my friends and had a lot of fun.");
             $stmt -> execute();
 
-			$sql = 'insert into cards (card_date, colour, story, username, pattern) values (now(), "ffffff", ?, admin", "default.png")';
+			$sql = 'insert into cards (card_date, colour, story, username, pattern) values ("2019-02-02", "ffffff", ?, admin", "default.png")';
             $stmt = $this -> pdo -> prepare($sql);
             $stmt -> bindValue(1, "I ate a very tasty muffin today.");
             $stmt -> execute();
@@ -100,20 +100,48 @@ class McHacksUser {
 
     
     /**
-     * Returns all cards created at the specified date.
-     * @param $date the date of cards required.
-     * @return the list of all cards created at the specified date.
+     * Returns the card created at the specified date.
+     * @param $date the date of the card required.
+     * @param $username the username of the user.
+     * @return a card created at the specified date by the user.
      */
-    function findCardForDate($date) {
+    function findCardForDate($date, $username) {
         try {
-			$dt = new DateTime($date);
-
             $sql = 'select card_date, colour, story, username, pattern from cards '
-                 . 'where date(card_date) = ?';
+                 . 'where date(card_date) = ? and username = ?';
             $stmt = $this -> pdo -> prepare($sql);
-            $stmt -> bindParam(1, $dt->format('Y-m-d'));
+            $stmt -> bindParam(1, $date->format('Y-m-d'));
+			$stmt -> bindParam(2, $username);
+            $stmt = $this -> pdo -> prepare($sql);
             $stmt -> execute();
-            return $stmt -> fetch();
+			return $stmt -> fetch();
+        }
+        catch(PDOException $e) {
+            echo $e -> getMessage();
+        }
+    }
+
+	/**
+     * Returns the random card created by the user.
+     * @param $username the username of the user.
+     * @return a random card created by the user.
+     */
+    function findCardRandom($username) {
+        try {
+            $sql = 'select card_date, colour, story, username, pattern from cards '
+                 . 'where username = ?';
+            $stmt = $this -> pdo -> prepare($sql);
+			$stmt -> bindParam(1, $username);
+            $stmt = $this -> pdo -> prepare($sql);
+            $stmt -> execute();
+            $dbResult = $stmt -> fetchAll();
+			$values = isset($dbResult) ? $dbResult : [];
+			$count = count($values) - 1;
+			if($count >= 0) {
+				$index = rand(0, $count);
+				for($i = 0; $i < $index; ++$i);
+				return $dbResult[$i];
+			}
         }
         catch(PDOException $e) {
             echo $e -> getMessage();
