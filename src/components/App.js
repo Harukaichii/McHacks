@@ -78,15 +78,15 @@ class App extends Component {
 
   //get number of days, write for loop to generate x
   componentDidMount() {
-    $.ajax({
-      url: "ajax.php",
-      data: "",
-      type: "GET",
-      dataType: "json",
-      success: function(json) {
-        console.log(json);
-      }
-    });
+    // $.ajax({
+    //   url: "ajax.php",
+    //   data: "",
+    //   type: "GET",
+    //   dataType: "json",
+    //   success: function(json) {
+    //     console.log(json);
+    //   }
+    // });
     let date = new Date();
     let numDays,
       daysArr = [];
