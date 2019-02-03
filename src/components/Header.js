@@ -1,5 +1,6 @@
 import React from "react";
 import Modal from "./Modal";
+
 class Header extends React.Component {
   constructor(props) {
     super(props);
@@ -10,16 +11,12 @@ class Header extends React.Component {
     };
   }
 
-  toggleShowModal = () => {
+  toggleShowModal = event => {
     this.setState({ showModal: !this.state.showModal });
   };
 
   generateMsg = () => {
-    console.log(Math.floor(Math.random() * 2));
-    return [
-      "I met my online friend in real life today! -February 2nd 2019",
-      "I ate tasty potatoes today - Feburary 1st 2019"
-    ][Math.floor(Math.random() * 2)];
+    return this.props.msgs[Math.floor(Math.random() * this.props.msgs.length)];
   };
 
   //TODO: Add in the rest of the month
@@ -86,7 +83,9 @@ class Header extends React.Component {
         </button>
         {this.state.showModal ? (
           <Modal>
-            <button onClick={this.toggleShowModal}>X</button>
+            <button id="closeSurprise" onClick={this.toggleShowModal}>
+              X
+            </button>
             {this.generateMsg()}
           </Modal>
         ) : null}

@@ -53,7 +53,7 @@ class Result extends React.Component {
                 {i + 1}
                 {success ? (
                   <img
-                    class="check"
+                    className="check"
                     alt="checkmark"
                     src={require("../assets/purplecheck.png")}
                   />
@@ -70,8 +70,10 @@ class Result extends React.Component {
               </button>
 
               <p>Tell me something positive today!</p>
-              <input type="text" />
-              <button onClick={this.props.toggleModal}>done</button>
+              <input onChange={this.props.onChange} type="text" />
+              <button id="done" onClick={this.props.onSubmit}>
+                done
+              </button>
             </Modal>
           ) : null}
         </div>

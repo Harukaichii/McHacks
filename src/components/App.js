@@ -3,6 +3,11 @@ import Header from "./Header";
 import Result from "./Result";
 import $ from "jquery";
 
+var msgs = [
+  "I met my online friend in real life today!-2019/02/02",
+  "I ate tasty potatoes today-2019/02/01"
+];
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +16,8 @@ class App extends Component {
       month: "",
       days: [],
       activeDay: { day: "", month: "", year: "" },
-      showModal: false
+      showModal: false,
+      currMsg: ""
     };
     this.toggleModal.bind(this);
   }
@@ -29,6 +35,20 @@ class App extends Component {
       this.setState({ showModal: !this.state.showModal });
     else if (this.state.showModal)
       this.setState({ showModal: !this.state.showModal });
+  };
+  onChange = e => {
+    this.setState({ currMsg: e.target.value });
+  };
+
+  onSubmit = e => {
+    e.preventDefault();
+    console.log(this.state.currMsg);
+    msgs.push(
+      `${this.state.currMsg}-${this.state.activeDay.year}/${
+        this.state.activeDay.month
+      }/${this.state.activeDay.day}`
+    );
+    this.setState({ showModal: !this.state.showModal });
   };
 
   prevMonth = () => {
@@ -142,6 +162,7 @@ class App extends Component {
             year={this.state.year}
             prevMonth={this.prevMonth}
             nextMonth={this.nextMonth}
+            msgs={msgs}
           />
           <Result
             year={this.state.year}
@@ -150,6 +171,8 @@ class App extends Component {
             activeDay={this.state.activeDay}
             showModal={this.state.showModal}
             toggleModal={this.toggleModal}
+            onChange={this.onChange}
+            onSubmit={this.onSubmit}
           />
         </div>
       </>
