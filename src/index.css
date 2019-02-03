@@ -112,18 +112,29 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: "Handlee", sans-serif;
+  font-size: 1.5rem;
+  
 }
 
 #modal > div {
-  background-color: white;
+  background-color: cornflowerblue;
   max-width: 500px;
-  padding: 15px;
+  max-height: 500px;
+  padding: 20px;
   border-radius: 5px;
   text-align: center;
+
+  min-width: 100px;
+  min-height: 100px;
 }
 
 #modal:empty {
   display: none;
+}
+
+#xbutton{
+  float: right;
 }
 
 #log{
@@ -134,7 +145,6 @@ p {
   border: 2px solid white;
   border-radius: 5px;
   margin: 20px 0 20px 10px;
-  
 }
 
 @keyframes expand {
