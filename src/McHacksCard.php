@@ -154,4 +154,21 @@ class McHacksUser {
     function __destruct() {
         unset($this -> pdo);
     }
+
+    function findCardForMonth($month, $year, $user){
+        try{
+                $sql = 'select colour, story, username, pattern'
+                . 'where month(date) = ? and year(date) = ? and user = ' ;
+            	$stmt = $this -> pdo -> prepare($sql);
+            	$stmt -> bindValue(1, $colour);
+				$stmt -> bindValue(2, $story);
+				$stmt -> bindValue(3, $username);
+				$stmt -> bindValue(4, $pattern);
+            	$stmt -> execute();
+            }
+        catch(PDOException $e) {
+            echo $e -> getMessage();
+        }
+    
+    }
 }
