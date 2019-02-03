@@ -21,8 +21,11 @@ class App extends Component {
     return new Date(year, month, 0).getDate();
   };
 
-  toggleModal = () => {
-    this.setState({ showModal: !this.state.showModal });
+  toggleModal = e => {
+    if (parseInt(e.target.dataset.id) === parseInt(this.state.activeDay.day))
+      this.setState({ showModal: !this.state.showModal });
+    else if (this.state.showModal)
+      this.setState({ showModal: !this.state.showModal });
   };
 
   prevMonth = () => {

@@ -47,6 +47,7 @@ class Result extends React.Component {
                 toggleModal={this.props.toggleModal}
                 key={i}
                 classes={classes}
+                id={i}
               >
                 {i + 1}
               </Note>
@@ -57,7 +58,6 @@ class Result extends React.Component {
           {this.state.showModal ? (
             <Modal>
               <button onClick={this.props.toggleModal}>X</button>
-              <p>hi</p>
             </Modal>
           ) : null}
         </div>
