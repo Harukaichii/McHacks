@@ -67,7 +67,6 @@ class Result extends React.Component {
             </Modal>
           ) : null}
         </div>
-        {}
       </>
     );
   }

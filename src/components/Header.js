@@ -60,10 +60,14 @@ class Header extends React.Component {
     return (
       <div className="header">
         <button id="log">{"Login"}</button>
-        <button onClick={this.props.prevMonth}>{"<"}</button>
+        <button id="left" onClick={this.props.prevMonth}>
+          {"<"}
+        </button>
         {`${this.state.monthName}, 
       ${this.state.year}`}
-        <button onClick={this.props.nextMonth}>{">"}</button>
+        <button id="right" onClick={this.props.nextMonth}>
+          {">"}
+        </button>
       </div>
     );
   }

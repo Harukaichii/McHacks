@@ -114,7 +114,6 @@ p {
   align-items: center;
   font-family: "Handlee", sans-serif;
   font-size: 1.5rem;
-  
 }
 
 #modal > div {
@@ -133,18 +132,26 @@ p {
   display: none;
 }
 
-#xbutton{
+#xbutton {
   float: right;
 }
 
-#log{
+#log {
   width: 120px;
-  float:left;
+  float: left;
   font-family: "Gochi Hand";
   font-size: 40px;
   border: 2px solid white;
   border-radius: 5px;
   margin: 20px 0 20px 10px;
+}
+
+#left:hover {
+  animation: slideToLeft 0.1s ease-in 0s forwards;
+}
+
+#right:hover {
+  animation: slideToRight 0.1s ease-in 0s forwards;
 }
 
 @keyframes expand {
@@ -153,5 +160,25 @@ p {
   }
   to {
     transform: scale(1.2);
+  }
+}
+
+@keyframes slideToLeft {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-10px);
+  }
+}
+
+@keyframes slideToRight {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(10px);
   }
 }
