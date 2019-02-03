@@ -10,7 +10,7 @@ class App extends Component {
       year: "",
       month: "",
       days: [],
-      activeDay: "",
+      activeDay: { day: "", month: "", year: "" },
       showModal: false
     };
     this.toggleModal.bind(this);
@@ -104,7 +104,7 @@ class App extends Component {
       year: date[0],
       month: date[1],
       days: daysArr,
-      activeDay: date[2]
+      activeDay: { day: date[2], month: date[1], year: date[0] }
     });
   }
 
