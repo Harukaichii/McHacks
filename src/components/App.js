@@ -15,13 +15,17 @@ class App extends Component {
     };
     this.toggleModal.bind(this);
   }
+
   daysInMonth = (month, year) => {
     // Use 1 for January, 2 for February, etc.
     return new Date(year, month, 0).getDate();
   };
 
-  toggleModal = () => {
-    this.setState({ showModal: !this.state.showModal });
+  toggleModal = e => {
+    if (parseInt(e.target.dataset.id) === parseInt(this.state.activeDay.day))
+      this.setState({ showModal: !this.state.showModal });
+    else if (this.state.showModal)
+      this.setState({ showModal: !this.state.showModal });
   };
 
   prevMonth = () => {
@@ -77,15 +81,15 @@ class App extends Component {
 
   //get number of days, write for loop to generate x
   componentDidMount() {
-    // $.ajax({
-    //   url: "ajax.php",
-    //   data: "",
-    //   type: "GET",
-    //   dataType: "json",
-    //   success: function(json) {
-    //     console.log(json);
-    //   }
-    // });
+    $.ajax({
+      url: "ajax.php",
+      data: "",
+      type: "GET",
+      dataType: "json",
+      success: function(json) {
+        console.log(json);
+      }
+    });
     let date = new Date();
     let numDays,
       daysArr = [];
