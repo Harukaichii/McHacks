@@ -59,6 +59,7 @@ class Header extends React.Component {
   render() {
     return (
       <div className="header">
+        <button id="log">{this.props.loggedIn ? "Log out!" : "Log In!"}</button>
         <button>{"<"}</button>
         {`${this.state.monthName}, 
       ${this.state.year}`}

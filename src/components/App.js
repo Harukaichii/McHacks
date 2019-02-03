@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Header from "./Header";
 import Result from "./Result";
+import $ from "jquery";
 
 class App extends Component {
   constructor(props) {
@@ -10,7 +11,8 @@ class App extends Component {
       month: "",
       days: [],
       activeDay: "",
-      showModal: false
+      showModal: false,
+      loggedIn: false
     };
     this.toggleModal.bind(this);
   }
@@ -26,6 +28,15 @@ class App extends Component {
 
   //get number of days, write for loop to generate x
   componentDidMount() {
+    $.ajax({
+      url: "ajax.php",
+      data: "",
+      type: "GET",
+      dataType: "json",
+      success: function(json) {
+        console.log(json);
+      }
+    });
     let date = new Date();
     let numDays,
       daysArr = [];
@@ -54,7 +65,11 @@ class App extends Component {
     return (
       <>
         <div className="container">
-          <Header month={this.state.month} year={this.state.year} />
+          <Header
+            month={this.state.month}
+            year={this.state.year}
+            loggedIn={this.state.loggedIn}
+          />
           <Result
             year={this.state.year}
             month={this.state.month}

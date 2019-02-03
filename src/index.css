@@ -136,6 +136,10 @@ p {
   display: none;
 }
 
+#log {
+  font-size: 1rem;
+}
+
 @keyframes expand {
   from {
     transform: scale(1);
@@ -144,3 +148,5 @@ p {
     transform: scale(1.2);
   }
 }
+
+/* @keyframes; */
