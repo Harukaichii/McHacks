@@ -84,15 +84,31 @@ class App extends Component {
 
   //get number of days, write for loop to generate x
   componentDidMount() {
-    $.ajax({
-      url: "ajax.php",
-      data: "",
-      type: "GET",
-      dataType: "json",
-      success: function(json) {
-        console.log(json);
-      }
+    // $.ajax({
+    //   url: "ajax.php",
+    //   data: "",
+    //   type: "GET",
+    //   dataType: "json",
+    //   success: function(json) {
+    //     console.log(json);
+    //   }
+    // });
+
+    let dataURL = "http://localhost/McHacks/src/index.php";
+    let h = new Headers();
+    let req = new Request(dataURL, {
+      headers: h,
+      method: "GET",
+      mode: "no-cors"
     });
+    fetch(req)
+      .then(response => {
+        console.log(response + "success");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
     let date = new Date();
     let numDays,
       daysArr = [];
