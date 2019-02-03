@@ -18,14 +18,28 @@ class Result extends React.Component {
     return { year, month, days, activeDay, showModal };
   }
 
+  //compares two dates and returns true if the first day is smaller than the second date
+
   render() {
     return (
       <>
         <div className="container-grid">
           {this.state.days.map((v, i) => {
             let classes =
-              +this.state.activeDay === i + 1 ? "note active" : "note";
-            let disable = i + 1 < this.state.activeDay ? "disable" : null;
+              +this.state.activeDay.day === i + 1 &&
+              this.state.activeDay.month === this.state.month &&
+              this.state.activeDay.year === this.state.year
+                ? "note active"
+                : "note";
+            let disable =
+              (i + 1 < this.state.activeDay.day &&
+                this.state.month <= this.state.activeDay.month &&
+                this.state.year <= this.state.activeDay.year) ||
+              (this.state.month < this.state.activeDay.month &&
+                this.state.year <= this.state.activeDay.year) ||
+              this.state.year < this.state.activeDay.year
+                ? "disable"
+                : "";
 
             classes = `${classes} ${disable}`;
             return (
